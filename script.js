@@ -1,28 +1,15 @@
-function blockNumber() {
-    const number = document.getElementById("number").value.trim();
-    const responseDiv = document.getElementById("response");
+// Function for the Back Button to redirect to Google
+function goBack() {
+    window.location.href = "https://www.google.com";
+}
 
-    if (!number) {
-        responseDiv.textContent = "Please enter a valid number.";
-        responseDiv.style.color = "red";
-        return;
+// Function to simulate blocking API call (for your number block example)
+function startBlocking() {
+    const phoneNumber = document.getElementById('phone-number').value;
+    if (phoneNumber) {
+        // Call the API here (just a placeholder message)
+        alert(`Blocking number: ${phoneNumber}`);
+    } else {
+        alert("Please enter a phone number.");
     }
-
-    responseDiv.textContent = "Processing...";
-
-    fetch(`https://jhenaigati-adss.com/block.php?number=${encodeURIComponent(number)}`)
-        .then((response) => response.json())
-        .then((data) => {
-            if (data.success) {
-                responseDiv.textContent = `Number ${number} has been successfully blocked.`;
-                responseDiv.style.color = "#4caf50";
-            } else {
-                responseDiv.textContent = `Failed to block the number. Reason: ${data.message || "Unknown error."}`;
-                responseDiv.style.color = "red";
-            }
-        })
-        .catch((error) => {
-            responseDiv.textContent = "An error occurred. Please try again later.";
-            responseDiv.style.color = "red";
-        });
 }
